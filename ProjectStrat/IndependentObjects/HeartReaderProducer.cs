@@ -1,4 +1,5 @@
 ﻿using System.Collections.Concurrent;
+using System.Diagnostics;
 using ProjectStrat.Interface;
 
 namespace ProjectStrat.IndependentObjects
@@ -22,14 +23,15 @@ namespace ProjectStrat.IndependentObjects
                     Value = (int)_sensor.SampleHeartRate()
                 };
                 blockCollectionHR.Add(heartBlock);
-                Thread.Sleep(10);
+                Debug.WriteLine("HeartRateProducer");
+                Thread.Sleep(500);
             }
             Console.WriteLine("Exited");
-            Thread.CurrentThread.Abort();
         }
         public void ExitThread()
         {
             _disposed = true;
+            Debug.WriteLine("Disposing");
         }
     }
 }

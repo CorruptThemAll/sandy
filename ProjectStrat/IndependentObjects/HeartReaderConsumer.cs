@@ -22,6 +22,7 @@ public class HeartReaderConsumer : HeartReaderSubject, IHeartReaderConsumer
                 HeartRate = item.Value;
                 this.Notify();
             }
+            Thread.Sleep(500);
         }
         heartRateState = true;
     }
