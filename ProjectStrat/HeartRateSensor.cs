@@ -10,7 +10,7 @@ namespace ProjectStrat
     {
         readonly Random random = new();
         readonly double shape = 5.0; // Shape parameter, tune this according to your needs
-        readonly double rate = 0.1; // Rate parameter, tune this according to your needs
+        readonly double rate = 0.4; // Rate parameter, tune this according to your needs
         int upperBound = 101;
         
         public double SampleHeartRate()
