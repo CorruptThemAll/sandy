@@ -26,6 +26,7 @@ namespace ProjectStrat.IndependentObjects
                 Debug.WriteLine("HeartRateProducer");
                 Thread.Sleep(500);
             }
+            Debug.WriteLine("producer thread dead");
             Console.WriteLine("Exited");
         }
         public void ExitThread()

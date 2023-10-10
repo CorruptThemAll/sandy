@@ -1,6 +1,7 @@
 ﻿using System.Collections.Concurrent;
 using ProjectStrat.Interface;
 using ProjectStrat.Abstract;
+using System.Diagnostics;
 
 namespace ProjectStrat.IndependentObjects;
 public class HeartReaderConsumer : HeartReaderSubject, IHeartReaderConsumer
@@ -24,6 +25,7 @@ public class HeartReaderConsumer : HeartReaderSubject, IHeartReaderConsumer
             }
             Thread.Sleep(500);
         }
+        Debug.WriteLine("Consumer thread dead");
         heartRateState = true;
     }
 }

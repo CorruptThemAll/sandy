@@ -40,14 +40,18 @@ namespace ProjectStrat
         internal void Decrease(object? sender, KeyPressEventArgs e)
         {
             if (upperBound > 90 && e.Key == 'd')
+            {
                 upperBound--;
-            Debug.WriteLine("Decreased");
+                Debug.WriteLine("Decreased");
+            }
         }
         internal void Increase(object? sender, KeyPressEventArgs e)
         {
-            if (upperBound < 120 && e.Key == 'a')
+            if (upperBound < 120 && e.Key == 'a') 
+            {
                 upperBound++;
-            Debug.WriteLine("Increased");
+                Debug.WriteLine("Increased");
+            }
         }
     }
 }

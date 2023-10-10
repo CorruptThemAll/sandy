@@ -11,7 +11,6 @@ namespace ProjectStrat
     {
         static void Main(string[] args)
         {
-            Console.Title = "Test Program";
             Thread tconsumer, tproducer;
             BlockingCollection<HeartRateBlock> blockCollectionHR = new();
             var heartSense = new HeartRateSensor();
@@ -26,22 +25,18 @@ namespace ProjectStrat
             var processer = new Processer(heartRateConsumer);
             var diplay = new Display(heartRateConsumer);
 
-            tconsumer = new(heartRateProducer.AddHeartRate)
-            {
-                Name = "Consumer"
-            };
             tproducer = new(heartRateConsumer.ConsumeHeartRate)
             {
                 Name = "Producer"
             };
-            try
+            tconsumer = new(heartRateProducer.AddHeartRate)
             {
-                tproducer.Start();
-                tconsumer.Start();
-            } catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+                Name = "Consumer"
+            };
+            
+            tproducer.Start();
+            tconsumer.Start();
+           
 
             while (!userInput.exitKey)
             {
