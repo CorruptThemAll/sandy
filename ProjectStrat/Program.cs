@@ -14,12 +14,13 @@ namespace ProjectStrat
             Thread tconsumer, tproducer;
             BlockingCollection<HeartRateBlock> blockCollectionHR = new();
             var heartSense = new HeartRateSensor();
-            var heartRateProducer = new HeartReaderProducer(blockCollectionHR, heartSense);
-            var heartRateConsumer = new HeartReaderConsumer(blockCollectionHR);
             var userInput = new UserInput();
             userInput.KeyEvent += heartSense.Increase;
             userInput.KeyEvent += heartSense.Decrease;
             userInput.KeyEvent += userInput.CloseProgram;
+
+            var heartRateProducer = new HeartReaderProducer(blockCollectionHR, heartSense, userInput);
+            var heartRateConsumer = new HeartReaderConsumer(blockCollectionHR);
             var heartRateContainer = new HeartRateContainer(heartRateConsumer);
             var log = new Log(heartRateConsumer);
             var processer = new Processer(heartRateConsumer);
@@ -27,11 +28,13 @@ namespace ProjectStrat
 
             tproducer = new(heartRateConsumer.ConsumeHeartRate)
             {
-                Name = "Producer"
+                Name = "Producer",
+                IsBackground = true,
             };
             tconsumer = new(heartRateProducer.AddHeartRate)
             {
-                Name = "Consumer"
+                Name = "Consumer",
+                IsBackground = true,
             };
             
             tproducer.Start();
@@ -43,8 +46,10 @@ namespace ProjectStrat
                 userInput.ButtonPress(Console.ReadKey().KeyChar);
                 Thread.Sleep(10);
             }
+            
             heartRateProducer.ExitThread();
-            tproducer.Join();
+            
+            tproducer.Join(TimeSpan.FromSeconds(3));
             tconsumer.Join();
 
             Console.WriteLine("done");
