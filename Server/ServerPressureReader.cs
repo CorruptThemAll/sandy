@@ -25,6 +25,8 @@ namespace Server
 
         public void Run() => Read();
 
+        //I forhold til projekt: Denne kode for server modtager data i stedet for at sende det.
+        //Koden før loopet er sådan man sætter op en server.
         private void Read()
         {
             IPAddress iPAddress = IPAddress.Any;
