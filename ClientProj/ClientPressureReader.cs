@@ -18,6 +18,8 @@ namespace ClientProj
 
         public void Run() => Read();
 
+        //Man skal huske at i forhold til projekt, skal denne client ændres til en modtager af beskeder og ikke en sender.
+        //Så koden før loop er den koden som connecter til en server.
         private void Read()
         {
             var IPaddress = IPAddress.Parse("127.0.0.1");

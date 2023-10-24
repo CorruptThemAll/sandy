@@ -11,7 +11,7 @@ namespace ClientProj
     public class BloodPressureRead
     {
         private readonly BlockingCollection<BloodPressureSample> bloodPressureSample;
-        private BloodPressureSensor sensor; 
+        private BloodPressureSensor sensor;
         public bool run;
         public BloodPressureRead(BlockingCollection<BloodPressureSample> bloodPressureSample)
         {
