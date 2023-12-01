@@ -6,6 +6,60 @@ namespace sandy
 {
     public class Program
     {
+        private static double FindMedianSortedArrays2(int[] nums1, int[] nums2)
+        {
+            var array = new int[nums1.Length + nums2.Length];
+            for (int i = 0; i < array.Length; i++) 
+            {
+                if(i < nums1.Length)
+                    array[i] = nums1[i];
+                else
+                    array[i] = nums2[i-nums1.Length];
+            }
+            Array.Sort(array);
+            if (array.Length % 2 == 0)
+            {
+                return (array[array.Length/ 2 - 1] + array[array.Length/ 2])/2.0;
+            }
+            return array[array.Length / 2];
+        }
+        private static double FindMedianSortedArrays(int[] nums1, int[] nums2)
+        {
+            var mergedArray = new int[nums1.Length + nums2.Length];
+            var nums1Length = nums1.Length;
+            var nums2Length = nums2.Length;
+            var num1 = 0; 
+            var num2 = 0;
+            var halfLenght = mergedArray.Length / 2;
+            for (int i = 0; i < halfLenght + 1; i++)
+            {
+                if (nums1Length > i)
+                    num1 = nums1[i];
+                if (nums2Length > i)
+                    num2 = nums2[i];
+                if(num1 < num2)
+                {
+                    mergedArray[i] = num1;
+                    if(num2 < mergedArray[i + 1])
+                        mergedArray[i + 2] = mergedArray[mergedArray[i + 1]];
+                    mergedArray[i + 1] = num2;
+
+                }
+                else if (num1 > num2) {
+                    mergedArray[i] = num2;
+                    if (num1 < mergedArray[i + 1])
+                        mergedArray[i + 2] = mergedArray[mergedArray[i + 1]];
+                    mergedArray[i + 1] = num1;
+                }
+            }
+            if (mergedArray.Length % 2 == 0)
+            {
+                return (mergedArray[halfLenght] + mergedArray[halfLenght+1])/2.0;
+            } else
+            {
+                return mergedArray[halfLenght];
+            }
+        }
         public static string Decode(string morseCode)
         {
             string[] splitCode = morseCode.Split(" ");
@@ -122,6 +176,9 @@ namespace sandy
 
         static void Main(string[] args)
         {
+            FindMedianSortedArrays2(new int[] { 1, 2 }, new int[] { 3, 4 });
+            var write = FindMedianSortedArrays(new int[] { 1, 2 }, new int[] { 3, 4 });
+            Console.WriteLine(write.ToString());
             Decode(".... . -.--   .--- ..- -.. .");
             var hey = validBraces("()");
             var yo = DigitalRoot(195);
