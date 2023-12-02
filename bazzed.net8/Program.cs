@@ -44,6 +44,8 @@ namespace bazzed.net8
                 sum += int.Parse(digit);
                 Console.WriteLine(sum);
             }
+
+            Advent02.Part1();
         }
     }
 }
