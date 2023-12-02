@@ -2,6 +2,43 @@
 
 public class Advent01
 {
+    static bool TryNumber(string input, out int result)
+    {
+        switch (input)
+        {
+            case "one":
+                result = 1;
+                return true;
+            case "two":
+                result = 2;
+                return true;
+            case "three":
+                result = 3;
+                return true;
+            case "four":
+                result = 4;
+                return true;
+            case "five":
+                result = 5;
+                return true;
+            case "six":
+                result = 6;
+                return true;
+            case "seven":
+                result = 7;
+                return true;
+            case "eight":
+                result = 8;
+                return true;
+            case "nine":
+                result = 9;
+                return true;
+            default:
+                result = 0;
+                return false;
+        }
+    }
+
     public void Part1()
     {
         var arrayOfStrings = File.ReadAllLines(@"C:\Users\Lukas\Downloads\adventofcode1.txt");
